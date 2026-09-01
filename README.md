@@ -88,10 +88,15 @@ The skill also includes a final "obviously AI generated" audit pass and a second
 
 > "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
 
-## 35 Patterns Detected (with Before/After Examples)
+## 37 Patterns Detected (with Before/After Examples)
 
 Patterns 1 to 30 are the English ones and are tabled below. Patterns 31 to 35 are
 Swedish-specific tells and live in `SKILL.md` under "Swedish-specific tells".
+Patterns 36 onward were found by running `BASELINE-PROMPTS.md` against a new model
+and are tagged with the model and date they were first seen.
+
+Six patterns carry a **Status: quiet** line as of the Fable 5.1 review
+(2026-08-26). They stay until a second review confirms they no longer fire.
 
 ### Content Patterns
 
@@ -131,6 +136,8 @@ Swedish-specific tells and live in `SKILL.md` under "Swedish-specific tells".
 | 28 | **Signposting announcements** | "Let's dive in", "Here's what you need to know" | Start with the content |
 | 29 | **Fragmented headers** | "## Performance" + "Speed matters." | Let the heading do the work |
 | 30 | **Manufactured suspense** | "What happened next is the part I did not expect." | Delete it and say the thing |
+| 36 | **Invented particulars** | "I would have stopped on day six instead of day twenty-one" (prompt said neither) | Keep only what the author supplied |
+| 37 | **Aphorism metronome** | Every paragraph ends on a quotable line | End most paragraphs on the fact, not the moral |
 
 ### Communication Patterns
 
@@ -183,6 +190,8 @@ Swedish-specific tells and live in `SKILL.md` under "Swedish-specific tells".
 
 ## Version History
 
+- **2.10.0** - First model review, Fable 5.1 on release day. Six patterns marked quiet (#7, #14, #15, #17, #26, #31), kept pending a second review. #10 extended: the rule of three has moved from inside sentences to the essay's outline. Two new patterns from the review, #36 invented particulars and #37 aphorism metronome. Run logged in `BASELINE-PROMPTS.md` with its caveats
+- **2.9.0** - Added `BASELINE-PROMPTS.md`: three frozen prompts (long English, short Swedish, functional docs) for reviewing the guide against a new model, with run instructions and a log
 - **2.8.0** - Added the deletion pass to the process: cut any paragraph whose removal costs the reader nothing. Sixteen of the patterns are phrase lists, so they catch a defect only in the wording it was documented in; the deletion pass is the general form and needs no list. Added a section on reviewing the guide against a new model, including retiring patterns that stop firing
 - **2.7.0** - Added pattern #30, manufactured suspense: prose that announces a surprise instead of delivering it. Found in a published blog post that had already passed a humanizer run, because pattern #28 only catches the tutorial phrasings ("let's dive in") and misses the narrative ones ("what happened next"). Swedish tells renumbered to 31-35
 - **2.6.0** - Added five Swedish-specific tells: dash typography, translated English idiom, connector stacking, LinkedIn voice, over-formal register

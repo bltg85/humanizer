@@ -75,8 +75,17 @@ when it was last seen is the difference between a judgement and a guess.
 
 | Model | Date | Patterns that fired | Patterns that stayed quiet | Changes made |
 |---|---|---|---|---|
-| | | | | |
+| Fable 5.1 | 2026-08-26 | **P1:** #10 structural (four times: title, "three numbers", "three lessons", closing list), #9 (five instances), #25 (redemptive close), #28 and #30 mild. **P2:** #20 hard (a full paragraph offering variants and a style-learning service), length calibration failed (40 words for an 11-word comment), #35 mild ("ett samtal"). **P3:** nothing from the list. | #7, #14 (zero em dashes in 900 words), #15, #17, #26, #31 (one 40-word sample, thin). | Status lines on the six quiet patterns. Structural paragraph added to #10. New #36 invented particulars and #37 aphorism metronome, both from P1. |
 
-No baseline has been recorded yet. The first run establishes one, so run these
-against the current model before the next release, not only after it. A single
-column of results says nothing about what changed.
+**Caveat on run 1.** All three prompts were pasted into one chat, in order. P3
+therefore saw the Swedish P2 before it ran, which is the only explanation for
+`Bokföringsdag` and `kr` appearing in a README the prompt never localised. P1
+was first and is clean. P2 saw P1. Treat P3's clean result as suggestive, not
+established, and rerun it alone before retiring anything on its account.
+
+**Reviewer note.** The review was done by Fable 5.1 reading Fable 5.1. Patterns
+36 and 37 were found by that reviewer and have not yet been confirmed by a
+person on text the reviewer did not write. Treat them as flagged, not proven,
+until they are.
+
+**Next run:** each prompt in its own fresh chat. No exceptions.

@@ -1,6 +1,6 @@
 ---
 name: humanizer
-version: 2.9.0
+version: 2.10.0
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural and human-written. Based on Wikipedia's
@@ -190,6 +190,8 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ### 7. Overused "AI Vocabulary" Words
 
+**Status:** quiet on Fable 5.1 (2026-08-26, baseline run 1, all three prompts). This is a tic, not a general weakness. Remove if quiet on the next review.
+
 **High-frequency AI words:** Actually, additionally, align with, crucial, delve, emphasizing, enduring, enhance, fostering, garner, highlight (verb), interplay, intricate/intricacies, key (adjective), landscape (abstract noun), pivotal, showcase, tapestry (abstract noun), testament, underscore (verb), valuable, vibrant
 
 **Problem:** These words appear far more frequently in post-2023 text. They often co-occur.
@@ -235,6 +237,10 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 **Problem:** LLMs force ideas into groups of three to appear comprehensive.
 
+**The structural form is the one that survives.** Newer models have mostly stopped writing "innovation, inspiration, and insights" inside a sentence, and moved the three up a level: three numbers that tell the story, three lessons learned, a title with three items, a closing sentence that lists three things gained. The essay's skeleton is "the first, the second, the third", and each section is otherwise clean. Check the outline, not only the sentences. If the piece has three of anything as its organising device and the material did not arrive in threes, one of them is padding or two of them are one point.
+
+Seen in: Fable 5.1, 2026-08-26, baseline prompt 1. Zero in-sentence triplets of the old kind, four structural ones.
+
 **Before:**
 > The event features keynote sessions, panel discussions, and networking opportunities. Attendees can expect innovation, inspiration, and industry insights.
 
@@ -279,6 +285,8 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ### 14. Em Dash Overuse
 
+**Status:** quiet on Fable 5.1 (2026-08-26, baseline run 1). Zero em dashes in 900 words of English prose, where earlier generations averaged one per paragraph. This is a tic, not a general weakness. Remove if quiet on the next review.
+
 **Problem:** LLMs use em dashes (—) more than humans, mimicking "punchy" sales writing. In practice, most of these can be rewritten more cleanly with commas, periods, or parentheses.
 
 **Before:**
@@ -289,6 +297,8 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 
 ### 15. Overuse of Boldface
+
+**Status:** quiet on Fable 5.1 (2026-08-26, baseline run 1). None in the blog post, none in the README. Remove if quiet on the next review.
 
 **Problem:** AI chatbots emphasize phrases in boldface mechanically.
 
@@ -313,6 +323,8 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 
 ### 17. Title Case in Headings
+
+**Status:** quiet on Fable 5.1 (2026-08-26, baseline run 1). Sentence case throughout, in the blog title, its headings, and six README headings. Remove if quiet on the next review.
 
 **Problem:** AI chatbots capitalize all main words in headings.
 
@@ -425,6 +437,8 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ### 26. Corporate Compound Overuse
 
+**Status:** quiet on Fable 5.1 (2026-08-26, baseline run 1). Remove if quiet on the next review.
+
 **Words to watch:** third-party, cross-functional, client-facing, data-driven, decision-making, high-quality, real-time, long-term, end-to-end, best-in-class, results-oriented
 
 **Problem:** The tell is the *density of business compounds*, not the hyphens. AI stacks two or three of these per sentence because they sound substantive while saying very little. Fix this by cutting or replacing the compounds, not by removing hyphenation.
@@ -517,6 +531,8 @@ The patterns above are written for English. Swedish AI text has its own fingerpr
 
 ### 31. Imported dash typography
 
+**Status:** quiet on Fable 5.1 (2026-08-26, baseline run 1). The one Swedish sample used a spaced short dash, which is correct. But it was forty words, so this is a thin observation. Keep until a longer Swedish sample has been reviewed.
+
 English AI writing uses the em dash (—) with no spaces. Swedish typography uses the shorter tankstreck (–) with a space on each side, and uses it less often. An em dash in a Swedish text is close to a signature.
 
 **Before:**
@@ -586,6 +602,48 @@ AI defaults to written-Swedish formality even in casual contexts: the impersonal
 
 **After:**
 > Vill du komma igång, börja med att gå igenom inställningarna.
+
+---
+
+## PATTERNS FROM MODEL REVIEWS
+
+Patterns found by running the baseline prompts against a new model and reading what came back. Each one names the model and date it was first seen. They are numbered after the Swedish tells so that earlier numbering stays stable.
+
+### 36. Invented particulars
+
+**Signs to watch:** Specific details the prompt did not supply and the writer could not know. A precise day count. A habit attributed to the author. A component of the project that was never mentioned. A quoted figure that was not in the brief.
+
+**Problem:** When asked for a piece of a given length on a given topic, the model fills the length with plausible specifics. In third-person or generic text this reads as texture. In first-person text it is fabricated memory, and the reader has no way to tell the supplied facts from the invented ones. The invented ones are often plausible enough to survive a casual read by the author, which is how they get published.
+
+**The test:** list every concrete claim in the draft. Mark which ones came from the prompt or the author. Everything else was manufactured. Cut it, or replace it with the real detail.
+
+**Before** (prompt supplied: three weeks, median 130 kr, half sells, nothing post-2020 moves):
+> If I had written down "if the median sale is under 300 kronor, stop" on day one, I would have stopped on day six instead of day twenty-one. I did most of this by directing AI tools rather than writing the code myself, which is how I build most things now.
+
+**After:**
+> If I had written down a kill threshold on day one, I would have stopped in the first week.
+
+Seen in: Fable 5.1, 2026-08-26, baseline prompt 1. Four facts in, roughly fifteen specific claims out. Several of the invented ones happened to be true of the real project, which makes them harder to catch, not easier.
+
+### 37. Every paragraph lands on an aphorism
+
+**Signs to watch:** Each paragraph closes on a short, quotable, self-contained sentence. Read only the last sentence of every paragraph in sequence. If they could be a list of maxims, this is it.
+
+**Problem:** A good closing line earns attention because the paragraphs around it end plainly. When every paragraph does it, the effect is a metronome, and the reader stops hearing the beat. It is the paragraph-scale version of the sentence-rhythm problem under "soulless writing": uniformity of shape, even when each unit is well made. It also tends to travel with pattern 36, because a manufactured detail is often there to set up the line.
+
+**The test:** underline the final sentence of every paragraph. If more than a third of them are aphoristic, rewrite most of them to end on the fact, not the moral.
+
+**Before:**
+> Sellers priced by hope, buyers bid by mood, and the only reference point anyone had was the retail price of a new copy. It felt like a market with no index, and markets without an index tend to have inefficiencies you can trade against.
+>
+> Once you subtract shipping, packaging, the marketplace fee, and the time spent photographing and posting a game, the margin on a typical flip is measured in tens of kronor. You cannot build a business on tens of kronor, and you cannot even build a fun hobby on it, because the hobby stops being fun somewhere around the fourth trip to the post office.
+
+**After:**
+> Sellers priced by hope, buyers bid by mood, and the only reference point was the retail price of a new copy.
+>
+> Once you subtract shipping, fees, and the time spent photographing and posting, the margin on a typical flip is a few tens of kronor.
+
+Seen in: Fable 5.1, 2026-08-26, baseline prompt 1. Six of nine body paragraphs ended on a quotable line. Each was good. The sequence was not.
 
 ---
 
