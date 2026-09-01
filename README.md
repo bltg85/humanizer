@@ -88,7 +88,10 @@ The skill also includes a final "obviously AI generated" audit pass and a second
 
 > "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
 
-## 29 Patterns Detected (with Before/After Examples)
+## 35 Patterns Detected (with Before/After Examples)
+
+Patterns 1 to 30 are the English ones and are tabled below. Patterns 31 to 35 are
+Swedish-specific tells and live in `SKILL.md` under "Swedish-specific tells".
 
 ### Content Patterns
 
@@ -127,6 +130,7 @@ The skill also includes a final "obviously AI generated" audit pass and a second
 | 27 | **Persuasive authority tropes** | "At its core, what matters is..." | State the point directly |
 | 28 | **Signposting announcements** | "Let's dive in", "Here's what you need to know" | Start with the content |
 | 29 | **Fragmented headers** | "## Performance" + "Speed matters." | Let the heading do the work |
+| 30 | **Manufactured suspense** | "What happened next is the part I did not expect." | Delete it and say the thing |
 
 ### Communication Patterns
 
@@ -179,6 +183,8 @@ The skill also includes a final "obviously AI generated" audit pass and a second
 
 ## Version History
 
+- **2.7.0** - Added pattern #30, manufactured suspense: prose that announces a surprise instead of delivering it. Found in a published blog post that had already passed a humanizer run, because pattern #28 only catches the tutorial phrasings ("let's dive in") and misses the narrative ones ("what happened next"). Swedish tells renumbered to 31-35
+- **2.6.0** - Added five Swedish-specific tells: dash typography, translated English idiom, connector stacking, LinkedIn voice, over-formal register
 - **2.5.1** - Added a passive-voice / subjectless-fragment rule, raising the total to 29 patterns
 - **2.5.0** - Added patterns for persuasive framing, signposting, and fragmented headers; expanded negative parallelisms to cover tailing negations; tightened wording around em dash overuse; fixed frontmatter wording to use "filler phrases"
 - **2.4.0** - Added voice calibration: match the user's personal writing style from samples

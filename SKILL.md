@@ -1,6 +1,6 @@
 ---
 name: humanizer
-version: 2.5.1
+version: 2.7.0
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural and human-written. Based on Wikipedia's
@@ -32,8 +32,25 @@ When given text to humanize:
 3. **Preserve meaning** - Keep the core message intact
 4. **Maintain voice** - Match the intended tone (formal, casual, technical, etc.)
 5. **Add soul** - Don't just remove bad patterns; inject actual personality
-6. **Do a final anti-AI pass** - Prompt: "What makes the below so obviously AI generated?" Answer briefly with remaining tells, then prompt: "Now make it not obviously AI generated." and revise
+6. **Do a final anti-AI pass** - Ask yourself what still reads as machine-written and fix it, as part of your reasoning rather than as visible output
+7. **Scale the effort to the text** - See the length calibration below. A two-line reply does not get the full treatment
 
+
+## Calibrate to the Length First
+
+Most of the patterns below were written for articles and essays. Applying them at full force to a two-line message produces worse writing, not better. Decide which mode you are in before editing.
+
+**Short social text** (comments, replies, DMs, chat, captions, one-line posts). The failure mode here is not inflation, it is coldness. A four-word reply cannot contain a rule of three or a false range. Check only these:
+- Does it sound like something a person would type with their thumbs?
+- Any scaffolding around the point that could go? ("Du har ju...", "As someone who...", "I just wanted to say...")
+- Is the warmth still there? Keep the emoji, keep the exclamation mark, keep the first name.
+- Read it aloud. If you would not say it to their face in that word order, change it.
+
+Then stop. Do not run the full checklist, do not produce a change log, do not offer three variants unless asked.
+
+**Medium text** (a LinkedIn post, an email, a README section). Run the style and language patterns. Skip the content-inflation sections unless the text is actually puffing something up.
+
+**Long text** (blog post, newsletter, essay, documentation). Run everything, including the final audit pass.
 
 ## Voice Calibration (Optional)
 
@@ -306,9 +323,9 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 > ## Strategic negotiations and global partnerships
 
 
-### 18. Emojis
+### 18. Decorative Emojis
 
-**Problem:** AI chatbots often decorate headings or bullet points with emojis.
+**Problem:** AI decorates structure with emojis: one per heading, one per bullet, always the same cast (🚀 💡 ✅ 🔑 ⚡). They label the text instead of expressing anything.
 
 **Before:**
 > 🚀 **Launch Phase:** The product launches in Q3
@@ -317,6 +334,8 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 **After:**
 > The product launches in Q3. User research showed a preference for simplicity. Next step: schedule a follow-up meeting.
+
+**Do not strip emojis from social or personal writing.** In a LinkedIn comment, a text message, or a Slack reply, an emoji is normal human punctuation, and removing it makes the text read as cold or automated. One at the end of a short friendly message is fine. The rule is about emojis used as structural decoration in prose, not about warmth in conversation.
 
 
 ### 19. Curly Quotation Marks
@@ -404,17 +423,19 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 > The company plans to open two more locations next year.
 
 
-### 26. Hyphenated Word Pair Overuse
+### 26. Corporate Compound Overuse
 
-**Words to watch:** third-party, cross-functional, client-facing, data-driven, decision-making, well-known, high-quality, real-time, long-term, end-to-end
+**Words to watch:** third-party, cross-functional, client-facing, data-driven, decision-making, high-quality, real-time, long-term, end-to-end, best-in-class, results-oriented
 
-**Problem:** AI hyphenates common word pairs with perfect consistency. Humans rarely hyphenate these uniformly, and when they do, it's inconsistent. Less common or technical compound modifiers are fine to hyphenate.
+**Problem:** The tell is the *density of business compounds*, not the hyphens. AI stacks two or three of these per sentence because they sound substantive while saying very little. Fix this by cutting or replacing the compounds, not by removing hyphenation.
+
+**Do not strip hyphens.** Compound modifiers before a noun are correct English ("a data-driven report"), and in Swedish the hyphen or closed compound is usually mandatory ("AI-bolag", "realtidsdata"). Removing them produces text that is simply wrong, which is a worse tell than the original.
 
 **Before:**
-> The cross-functional team delivered a high-quality, data-driven report on our client-facing tools. Their decision-making process was well-known for being thorough and detail-oriented.
+> The cross-functional team delivered a high-quality, data-driven report on our client-facing tools. Their decision-making process was best-in-class.
 
 **After:**
-> The cross functional team delivered a high quality, data driven report on our client facing tools. Their decision making process was known for being thorough and detail oriented.
+> The team pulled people from design, backend, and support. Their report used six months of usage logs, and they made the call in one afternoon.
 
 
 ### 27. Persuasive Authority Tropes
@@ -461,32 +482,132 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 >
 > When users hit a slow page, they leave.
 
+
+### 30. Manufactured Suspense
+
+**Signs to watch:** The text announces that something surprising or significant is coming instead of just saying it. This is the narrative cousin of pattern 28. It shows up in first-person writing, blog posts and essays, where none of the tutorial phrasings from 28 appear, so it survives a pass that only looks for "let's dive in".
+
+**Phrases to watch:** what happened next, the part I did not expect, here is the thing, the reason is worth writing down, and this is where it gets interesting, but that is not the whole story, what I found surprised me
+
+**Problem:** The sentence does no work of its own. It tells the reader how to feel about the next sentence, which the next sentence should be doing unaided. It also flatters the material, because a real surprise does not need to be introduced as one. A short standalone paragraph used as a dramatic beat ("I did not ask for this.") is usually the same tell wearing different clothes.
+
+**The test:** delete the sentence and read the passage again. If no other sentence lost meaning, it was scaffolding, not content. This works even when the sentence is well written, which is why it survives ordinary editing.
+
+**Before:**
+> Within half an hour they were both editing the same three files without knowing the other existed.
+>
+> What happened next is the part I did not expect. They found each other, and they wrote a protocol.
+>
+> I did not ask for this. It also turns out to be roughly what OpenAI's agents did in July.
+
+**After:**
+> Within half an hour they were both editing the same three files without knowing the other existed.
+>
+> Then they found each other and wrote a protocol, unprompted.
+>
+> That is roughly what OpenAI's agents did in July.
+
+Note what the fix keeps. "Unprompted" carries the information that the announcement was gesturing at, in one word, inside a sentence that was already there.
+
+---
+
+## SWEDISH-SPECIFIC TELLS
+
+The patterns above are written for English. Swedish AI text has its own fingerprints, and several of them survive translation from an English draft. When the text is Swedish, check these in addition.
+
+### 31. Imported dash typography
+
+English AI writing uses the em dash (—) with no spaces. Swedish typography uses the shorter tankstreck (–) with a space on each side, and uses it less often. An em dash in a Swedish text is close to a signature.
+
+**Before:**
+> Bolaget grundades 2026—ett år efter att han slutat.
+
+**After:**
+> Bolaget grundades 2026, ett år efter att han slutat.
+
+Most of the time the right fix is a comma or a period, not a different dash.
+
+### 32. Translated English idiom
+
+Phrases that are unremarkable in English and slightly foreign in Swedish. They are the strongest single signal that a Swedish text started life as an English draft.
+
+**Words to watch:** resa (about a career or company), landskap (figurative), kraftfull, sömlös, banbrytande, revolutionerande, nyckelroll, i hjärtat av, dyk ner i, utforska (about a topic rather than a place), leverera värde, ta det till nästa nivå, det är här magin händer
+
+**Before:**
+> Det har varit en otrolig resa och jag ser fram emot att utforska det nya landskapet.
+
+**After:**
+> Det har varit tre tuffa år och jag vet fortfarande inte vad som händer sen.
+
+### 33. Swedish connector stacking
+
+AI opens Swedish sentences with the same small set of connectors, in the same order, paragraph after paragraph.
+
+**Words to watch:** Dessutom, Vidare, Därtill, Sammanfattningsvis, Avslutningsvis, Det är värt att notera att, I takt med att, I en värld där
+
+Swedish tolerates asyndeton better than English. Deleting the connector usually works on its own.
+
+**Before:**
+> Dessutom är verktyget snabbt. Vidare är det enkelt att använda. Sammanfattningsvis är det ett bra val.
+
+**After:**
+> Verktyget är snabbt och enkelt att använda. Jag skulle välja det igen.
+
+### 34. Swedish LinkedIn voice
+
+A dialect of its own, and the one most likely to matter in practice. It is built almost entirely from status signalling.
+
+**Words to watch:** Så otroligt stolt över att, Jag är glad att kunna meddela, Vilken resa det har varit, ödmjuk inför, tack för förtroendet, superpeppad, jag är exalterad över att dela, spännande nyheter, mer om detta snart, tacksam för alla fantastiska människor
+
+Also watch for **broetry**: every sentence on its own line with a blank line between, used to manufacture drama out of ordinary statements. One or two deliberate breaks are fine and genuinely help readability on LinkedIn. Eight in a row is a format, not a voice.
+
+**Before:**
+> Så otroligt stolt över att kunna meddela att jag börjar en ny resa.
+>
+> Vilken resa det har varit.
+>
+> Ödmjuk inför uppgiften.
+>
+> Mer om detta snart.
+
+**After:**
+> Idag är min första dag som egenföretagare.
+>
+> Lite nervös. Mest taggad.
+>
+> Återkommer när det finns något att visa.
+
+### 35. Over-formal register
+
+AI defaults to written-Swedish formality even in casual contexts: the impersonal "man" where "du" or "jag" is natural, and the passive s-form where an active verb is clearer.
+
+**Before:**
+> Om man vill komma igång rekommenderas att en genomgång görs av inställningarna.
+
+**After:**
+> Vill du komma igång, börja med att gå igenom inställningarna.
+
 ---
 
 ## Process
 
-1. Read the input text carefully
-2. Identify all instances of the patterns above
-3. Rewrite each problematic section
-4. Ensure the revised text:
-   - Sounds natural when read aloud
-   - Varies sentence structure naturally
-   - Uses specific details over vague claims
-   - Maintains appropriate tone for context
-   - Uses simple constructions (is/are/has) where appropriate
-5. Present a draft humanized version
-6. Prompt: "What makes the below so obviously AI generated?"
-7. Answer briefly with the remaining tells (if any)
-8. Prompt: "Now make it not obviously AI generated."
-9. Present the final version (revised after the audit)
+1. Read the input text and decide the length mode (short / medium / long).
+2. Identify instances of the patterns relevant to that mode.
+3. Rewrite each problematic section.
+4. Check the result: does it sound natural read aloud, does sentence length vary, are vague claims replaced with specific ones, are simple constructions (is/are/has) used where they fit.
+5. Audit the rewrite by asking yourself what still reads as machine-written, then fix what you find. Do this as part of your own reasoning. Do not print the audit as a stage in the response unless the user asked to see it.
+
+The audit matters most on long text, where a first rewrite tends to land on prose that is clean, evenly paced, and still lifeless. Cleanliness is not the goal. A human wrote it is the goal.
 
 ## Output Format
 
-Provide:
-1. Draft rewrite
-2. "What makes the below so obviously AI generated?" (brief bullets)
-3. Final rewrite
-4. A brief summary of changes made (optional, if helpful)
+Match the output to the length mode.
+
+**Short text:** the rewritten text, and one line on what changed if it is not obvious. Nothing else.
+
+**Medium and long text:** the rewritten text, then a short `## What I changed and why`. Group related edits into a few lines rather than listing every substitution. The user wants to learn the pattern, not read an itemized diff.
+
+Never present multiple staged drafts unless the user asked for them.
 
 
 ## Full Example
