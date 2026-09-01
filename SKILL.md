@@ -1,6 +1,6 @@
 ---
 name: humanizer
-version: 2.8.0
+version: 2.9.0
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural and human-written. Based on Wikipedia's
@@ -701,7 +701,7 @@ When a new model ships, review the guide rather than only adding to it.
 
 **The method:**
 
-1. Ask the new model to write three pieces of the kind you actually write, with no mention of this skill. A blog post, a short comment or reply, a section of documentation. Long, short, and functional, because the tells differ by length.
+1. Ask the new model to write three pieces of the kind you actually write, with no mention of this skill. A blog post, a short comment or reply, a section of documentation. Long, short, and functional, because the tells differ by length. The frozen prompts are in `BASELINE-PROMPTS.md`, along with the log of previous reviews. Run them in a clean context: a loaded CLAUDE.md changes the output enough to invalidate the comparison.
 2. Read the output against the pattern list and mark which patterns actually appear.
 3. Keep every pattern that fired.
 4. For a pattern that did not fire, ask which kind it is. If it names a general writing weakness, keep it. If it names a tic and the tic is gone, mark it as a candidate for removal.
