@@ -1,6 +1,6 @@
 ---
 name: humanizer
-version: 2.7.0
+version: 2.8.0
 description: |
   Remove signs of AI-generated writing from text. Use when editing or reviewing
   text to make it sound more natural and human-written. Based on Wikipedia's
@@ -594,10 +594,28 @@ AI defaults to written-Swedish formality even in casual contexts: the impersonal
 1. Read the input text and decide the length mode (short / medium / long).
 2. Identify instances of the patterns relevant to that mode.
 3. Rewrite each problematic section.
-4. Check the result: does it sound natural read aloud, does sentence length vary, are vague claims replaced with specific ones, are simple constructions (is/are/has) used where they fit.
-5. Audit the rewrite by asking yourself what still reads as machine-written, then fix what you find. Do this as part of your own reasoning. Do not print the audit as a stage in the response unless the user asked to see it.
+4. **Run the deletion pass** (medium and long text). See below.
+5. Check the result: does it sound natural read aloud, does sentence length vary, are vague claims replaced with specific ones, are simple constructions (is/are/has) used where they fit.
+6. Audit the rewrite by asking yourself what still reads as machine-written, then fix what you find. Do this as part of your own reasoning. Do not print the audit as a stage in the response unless the user asked to see it.
 
 The audit matters most on long text, where a first rewrite tends to land on prose that is clean, evenly paced, and still lifeless. Cleanliness is not the goal. A human wrote it is the goal.
+
+### The deletion pass
+
+Most patterns in this guide are phrase lists. Sixteen of them open with "words to watch" or "phrases to watch", which means they catch a defect only in the wording it happened to be documented in. The same defect in different words walks straight through. Pattern 30 exists because pattern 28 had been in the guide for months and still missed "what happened next", simply because the list said "let's dive in".
+
+The deletion pass is the general form of that test, and it does not depend on any list.
+
+Go through the draft one paragraph at a time. For each one, and for every short standalone sentence, ask: **if I delete this, what does the reader no longer know?**
+
+- If the answer is a fact, a number, an opinion, an image, or a turn in the argument, keep it.
+- If the answer is "nothing, but it sets up the next paragraph", cut it. Setup is not content. The next paragraph can introduce itself.
+- If the answer is "it repeats the previous paragraph in different words", cut it. Elegant variation at paragraph scale.
+- If the answer is "it tells the reader this part matters", cut it and let the part matter.
+
+Do this on the rewrite, not on the input. A first-pass rewrite is where this kind of connective padding gets *added*, because smoothing prose and inflating it feel identical from the inside.
+
+The pass works on well-written sentences, which is the point. Everything else in this guide keys on the sentence sounding wrong. This one keys on the sentence doing nothing, and a sentence can do nothing beautifully.
 
 ## Output Format
 
@@ -671,6 +689,28 @@ Never present multiple staged drafts unless the user asked for them.
 - Removed filler phrases and persuasive framing ("In order to", "At its core")
 - Removed generic positive conclusion ("the future looks bright", "exciting times lie ahead")
 - Made the voice more personal and less "assembled" (varied rhythm, fewer placeholders)
+
+
+## Reviewing this guide against a new model
+
+Some of these patterns describe writing that is weak no matter who wrote it. Vague attribution, filler, hedging and generic conclusions were bad before LLMs existed and will be bad after. Those rules do not expire.
+
+Others describe one model generation's tics: a specific vocabulary, a density of em dashes, a fondness for a particular sentence shape. Those go stale. A model that no longer overuses a word does not need a rule telling it not to, and every dead rule makes the guide slower to apply and easier to skim past. Growth is not the goal. Thirty-five patterns that all fire beats fifty where a third are historical.
+
+When a new model ships, review the guide rather than only adding to it.
+
+**The method:**
+
+1. Ask the new model to write three pieces of the kind you actually write, with no mention of this skill. A blog post, a short comment or reply, a section of documentation. Long, short, and functional, because the tells differ by length.
+2. Read the output against the pattern list and mark which patterns actually appear.
+3. Keep every pattern that fired.
+4. For a pattern that did not fire, ask which kind it is. If it names a general writing weakness, keep it. If it names a tic and the tic is gone, mark it as a candidate for removal.
+5. Do not remove on one sample. Mark it, wait for the next review, remove if it stays quiet twice.
+6. Look for defects in the output that no pattern covers. Those are the additions, and they are worth more than the removals.
+
+**Record the model and date next to any decision**, so the following review has a baseline instead of starting over. A pattern retired in one generation may come back in the next, and knowing when it was last seen is the difference between a judgement and a guess.
+
+Step 6 is where the value is. Pattern 30 came from a published blog post that had already been written with this guide in hand: the em dashes were gone, the rule of three was gone, and the same defect was sitting there in a form no rule described. Reading real output beats extending a list from memory.
 
 
 ## Reference

@@ -183,6 +183,7 @@ Swedish-specific tells and live in `SKILL.md` under "Swedish-specific tells".
 
 ## Version History
 
+- **2.8.0** - Added the deletion pass to the process: cut any paragraph whose removal costs the reader nothing. Sixteen of the patterns are phrase lists, so they catch a defect only in the wording it was documented in; the deletion pass is the general form and needs no list. Added a section on reviewing the guide against a new model, including retiring patterns that stop firing
 - **2.7.0** - Added pattern #30, manufactured suspense: prose that announces a surprise instead of delivering it. Found in a published blog post that had already passed a humanizer run, because pattern #28 only catches the tutorial phrasings ("let's dive in") and misses the narrative ones ("what happened next"). Swedish tells renumbered to 31-35
 - **2.6.0** - Added five Swedish-specific tells: dash typography, translated English idiom, connector stacking, LinkedIn voice, over-formal register
 - **2.5.1** - Added a passive-voice / subjectless-fragment rule, raising the total to 29 patterns
